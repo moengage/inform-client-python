@@ -1,3 +1,4 @@
+import json
 from os import environ
 
 from constants import APIDescription, InformRoutes
@@ -45,3 +46,25 @@ class SandBoxClient(object):
             username = environ.get('INFORM_AUTH_USERNAME', None)
             password = environ.get('INFORM_AUTH_PASSWORD', None)
             self.session.init_basic_auth(username, password)
+
+    # Perform an API request
+    def send(self, username, request_data):
+        """
+        Post an inform request to Inform SandBox test environment
+        Args:
+            username:
+            request_data:
+        Raises:
+            InformApiException: Any error returned by the Inform API
+        Returns:
+            dict: response of the Inform API
+        """
+
+        url = "%s/%s" % (self.base_url, InformRoutes.INFORM_SEND)
+        headers = {'MOE-APPKEY': username}
+        resp = self.session.post(url, data=json.dumps(request_data), headers=headers)
+
+        if resp.status_code >= 400:
+            raise InformApiException(resp)
+
+        return resp.json()
