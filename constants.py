@@ -5,6 +5,5 @@ class InformRoutes(StrEnum):
     INFORM_SEND = "send"
 
 
-class APIDescription(StrEnum):
-    SUB_DOMAIN = '00'
-    VERSION = 'v1'
+class VERSION(StrEnum):
+    v1 = 'v1'

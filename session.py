@@ -43,6 +43,9 @@ class InformAPISession(Session):
         self.headers.update({
             'authorization': 'Basic {}'.format(credentials.decode())
         })
+        self.headers.update({
+            'MOE-APPKEY': username
+        })
 
 
 __all__ = ['InformAPISession']

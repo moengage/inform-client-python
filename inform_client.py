@@ -1,7 +1,7 @@
 import json
 from os import environ
 
-from constants import APIDescription, InformRoutes
+from constants import VERSION, InformRoutes
 from exceptions import InformApiException
 from session import InformAPISession
 
@@ -25,7 +25,7 @@ class InformClient(object):
             self.base_url = base_url
 
         else:
-            default_url = 'https://inform-api-' + APIDescription.SUB_DOMAIN + '.moengage.com/' + APIDescription.VERSION + '/'
+            default_url = 'https://inform-api-00.moengage.com/' + VERSION.v1
             self.base_url = environ.get('INFORM_BASE_URL', default_url)
 
         # Initialize the session.
@@ -48,11 +48,10 @@ class InformClient(object):
             self.session.init_basic_auth(username, password)
 
     # Perform an API request
-    def send(self, username, request_data):
+    def send(self, request_data, **kwargs):
         """
         Post an inform request to Inform live  environment
         Args:
-            username:
             request_data:
         Raises:
             InformApiException: Any error returned by the Inform API
@@ -61,8 +60,7 @@ class InformClient(object):
         """
 
         url = "%s/%s" % (self.base_url, InformRoutes.INFORM_SEND)
-        headers = {'MOE-APPKEY': username}
-        resp = self.session.post(url, data=json.dumps(request_data), headers=headers)
+        resp = self.session.post(url, data=json.dumps(request_data))
 
         if resp.status_code >= 400:
             raise InformApiException(resp)
