@@ -28,11 +28,6 @@ class InformAPISession(Session):
 
         self.mount("https://", MyHTTPAdapter(timeout=timeout))
 
-    def init_library_version(self, version):
-        self.headers.update({
-            'user-agent': 'inform-python/{}'.format(version)
-        })
-
     def init_token_auth(self, auth_token):
         self.headers.update({
             'authorization': 'Bearer {}'.format(auth_token)
@@ -46,6 +41,3 @@ class InformAPISession(Session):
         self.headers.update({
             'MOE-APPKEY': username
         })
-
-
-__all__ = ['InformAPISession']
