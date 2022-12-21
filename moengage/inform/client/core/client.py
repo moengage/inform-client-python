@@ -1,14 +1,15 @@
 import json
+import urllib3
+from base64 import b64encode
 from os import environ
 
-from moengage.inform.client.api.exception_handler import InformExceptionHandler
+from moengage.inform.client.api.exception_handler import InformClientBaseException
 from moengage.inform.client.utils.constants import InformRoutes
-from moengage.inform.client.utils.session import InformAPISession
 
 
 class Client(object):
 
-    def __init__(self, base_url=None, auth_token=None, username=None, password=None, timeout=5, **kwargs):
+    def __init__(self, base_url=None, auth_token=None, username=None, password=None, **kwargs):
         """
         Instantiate a new API client.
         Args:
@@ -18,32 +19,32 @@ class Client(object):
           password (str): Password used for Basic Auth
           timeout (float|tuple): Timeout in seconds. (Connect, Read) Defaults to 5 seconds for both.
         """
-        # Initialize the base url
+        # Initialize the base url and headers
         self.base_url = environ.get('INFORM_BASE_URL', base_url)
-
-        # Initialize the session.
-        self.session = InformAPISession(timeout)
+        self.headers = {'content-type': 'application/json'}
 
         # Token Auth takes precedence
-        if auth_token:
-            self.session.init_token_auth(auth_token)
-        elif 'INFORM_AUTH_TOKEN' in environ:
-            self.session.init_token_auth(environ['INFORM_AUTH_TOKEN'])
+        if auth_token or 'INFORM_AUTH_TOKEN' in environ:
+            self.headers.update({
+                'authorization': 'Bearer {}'.format(auth_token)
+            })
 
         # If no token auth, then Basic Auth
-        elif username and password:
-            self.session.init_basic_auth(username, password)
-        elif 'INFORM_AUTH_USERNAME' in environ and 'INFORM_AUTH_PASSWORD' in environ:
-            username = environ.get('INFORM_AUTH_USERNAME', None)
-            password = environ.get('INFORM_AUTH_PASSWORD', None)
-            self.session.init_basic_auth(username, password)
+        elif (username and password) or ('INFORM_AUTH_USERNAME' in environ and 'INFORM_AUTH_PASSWORD' in environ):
+            credentials = b64encode('{}:{}'.format(username, password).encode())
+            self.headers.update({
+                'authorization': 'Basic {}'.format(credentials.decode())
+            })
+            self.headers.update({
+                'MOE-APPKEY': username
+            })
 
     # Perform an API request
-    def send(self, request_data, **kwargs):
+    def send(self, request_body, **kwargs):
         """
         Post an inform request to Inform live  environment
         Args:
-            request_data:
+            request_body:
         Raises:
             InformClientBaseException: Any error returned by the Inform API
         Returns:
@@ -51,9 +52,12 @@ class Client(object):
         """
 
         url = "%s/%s" % (self.base_url, InformRoutes.INFORM_SEND)
-        resp = self.session.post(url, data=json.dumps(request_data))
 
-        if resp.status_code >= 400:
-            raise InformExceptionHandler().handle
+        http = urllib3.PoolManager()
+        encoded_body = json.dumps(request_body).encode('utf-8')
+        resp = http.request('POST', url, body=encoded_body, headers=self.headers)
 
-        return resp.json()
+        if resp.status >= 400:
+            return InformClientBaseException(resp.data, resp.status).get_message()
+
+        return resp.data

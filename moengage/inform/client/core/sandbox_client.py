@@ -4,7 +4,7 @@ from moengage.inform.client.utils.constants import DOMAIN, VERSION
 
 class SandBoxClient(Client):
 
-    def __init__(self, base_url=None, auth_token=None, username=None, password=None, timeout=5, **kwargs):
+    def __init__(self, base_url=None, auth_token=None, username=None, password=None, **kwargs):
         if not base_url:
             base_url = DOMAIN.TEST + VERSION.v1
-        super().__init__(base_url, auth_token, username, password, timeout, **kwargs)
+        super().__init__(base_url, auth_token, username, password, **kwargs)

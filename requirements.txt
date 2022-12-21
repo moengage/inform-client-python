@@ -1,2 +1,2 @@
-requests~=2.28.1
 StrEnum~=0.4.9
+urllib3~=1.26.13
