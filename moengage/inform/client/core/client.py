@@ -58,6 +58,6 @@ class Client(object):
         resp = http.request('POST', url, body=encoded_body, headers=self.headers)
 
         if resp.status >= 400:
-            return InformClientBaseException(resp.data, resp.status).get_message()
+            return json.loads(InformClientBaseException(resp.data, resp.status).get_message().decode('utf-8'))
 
-        return resp.data
+        return json.loads(resp.data.decode('utf-8'))
