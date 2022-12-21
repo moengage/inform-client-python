@@ -21,4 +21,4 @@ class InformClient(BaseClient):
             return err.errors
         except FieldDoesNotExist as err1:
             return json.dumps(str(err1))
-        super().send(request_body, **kwargs)
+        return super().send(request_body, **kwargs)
