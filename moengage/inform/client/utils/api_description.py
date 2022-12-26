@@ -8,5 +8,5 @@ class HTTPMethod(StrEnum):
     POST = "POST"
 
 
-class InformServiceRouteName(StrEnum):
-    INFORM_SENT = "send"
+class InformClientRoute(StrEnum):
+    INFORM_SEND = "send"

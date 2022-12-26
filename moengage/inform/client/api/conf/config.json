@@ -1,0 +1,4 @@
+{
+    "test_base_url": "https://sandbox-inform-api-00.moengage.com/v1",
+    "live_base_url": "https://inform-api-00.moengage.com/v1"
+}

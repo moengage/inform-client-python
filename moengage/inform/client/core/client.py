@@ -3,7 +3,7 @@ import urllib3
 from base64 import b64encode
 
 from moengage.inform.client.api.exception_handler import InformClientBaseException
-from moengage.inform.client.utils.api_description import HTTPMethod, InformServiceRouteName
+from moengage.inform.client.utils.api_description import HTTPMethod, InformClientRoute
 
 
 class BaseClient(object):
@@ -41,7 +41,7 @@ class BaseClient(object):
         Returns:
             dict: response of the Inform API
         """
-        url = "%s/%s" % (self.base_url, InformServiceRouteName.INFORM_SENT)
+        url = "%s/%s" % (self.base_url, InformClientRoute.INFORM_SEND)
 
         http = urllib3.PoolManager()
         encoded_body = json.dumps(request_body).encode('utf-8')
