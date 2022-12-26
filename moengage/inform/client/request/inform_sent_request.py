@@ -1,4 +1,4 @@
-from mongoengine import *
+from mongoengine import Document, ObjectIdField, StringField, DictField
 
 
 # TODO Key validation is not supported for DictField in mongoengine.
