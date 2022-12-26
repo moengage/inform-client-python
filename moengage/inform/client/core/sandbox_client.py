@@ -1,6 +1,6 @@
 import json
 
-from moengage.inform.client.api.conf.provider import InformClientConfigProvider
+from provider import InformClientConfigProvider
 from moengage.inform.client.core.client import BaseClient
 from moengage.inform.client.request.inform_sent_request import SandBoxClientSentRequest
 
