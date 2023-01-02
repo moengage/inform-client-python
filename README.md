@@ -11,68 +11,27 @@ APIs supported:
 
 For a full description of request and response payloads and properties, please see the [official Inform API docs](https://help.moengage.com/hc/en-us/articles/10672957787284-Overview-Inform).
 
+## Installation
+Install from PyPI using pip:
+
+```
+$ pip install inform-client-python
+```
+python3.X is required.
+
 ## Usage
 
-### Using Token Auth
 
-#### Inform Test Client
-
-```python
-from moengage.inform.client.core.sandbox_client import SandBoxClient
-
-client = SandBoxClient(auth_token="your-auth-token")
-
-payload = {"alert_id": "test_alert_id","user_id": "test_user_id","transaction_id": "test_transaction_id","payloads": {"SMS": {"recipient":"samplemobileno","personalized_attributes": {"attr": "value"}}}}
-response = client.send(payload)
-print(response)
-```
-
-#### Inform Live Client
+#### Inform  Client
 
 ```python
 from moengage.inform.client.core.inform_client import InformClient
-
-client = InformClient(auth_token="your-auth-token")
-
-payload = {"alert_id": "live_alert_id","user_id": "live_user_id","transaction_id": "live_transaction_id","payloads": {"EMAIL": {"recipient":"example@example.com","personalized_attributes": {"attr": "value"}}}}
+c = InformClient(base_url, app_id, api_secret)
+payload = {"alert_id": "alert_id","user_id": "user_id","transaction_id": "transaction_id","payloads": {"SMS": {"recipient":"samplemobileno","personalized_attributes": {"attr": "value"}}}}
 response = client.send(payload)
 print(response)
 ```
 
-### Using Basic Auth
-
-#### Inform Test Client
-
-```python
-from moengage.inform.client.core.sandbox_client import SandBoxClient
-
-client = SandBoxClient(username="your-user-name", password="your-pass-word")
-
-payload = {"alert_id": "test_alert_id","user_id": "test_user_id","transaction_id": "test_transaction_id","payloads": {"SMS": {"recipient":"samplemobileno","personalized_attributes": {"attr": "value"}}}}
-response = client.send(payload)
-print(response)
-```
-
-#### Inform Live Client
-
-```python
-from moengage.inform.client.core.inform_client import InformClient
-
-client = InformClient(username="your-user-name", password="your-pass-word")
-
-payload = {"alert_id": "live_alert_id","user_id": "live_user_id","transaction_id": "live_transaction_id","payloads": {"EMAIL": {"recipient":"example@example.com","personalized_attributes": {"attr": "value"}}}}
-response = client.send(payload)
-print(response)
-```
-
-If you need to use a base url other than the default https://sandbox-inform-api-00.moengage.com/v1 for test Inform API, you can pass it as a parameter to the SandBoxClient:
-```python
-client = SandBoxClient(base_url="your-base-url", username="your-user-name", password="your-pass-word")
-```
-If you need to use a base url other than the default https://inform-api-00.moengage.com/v1 for live Inform API, you can pass it as a parameter to the InformClient:
-```python
-client = InformClient(base_url="your-base-url", username="your-user-name", password="your-pass-word")
-```
 
 ## APIs
 

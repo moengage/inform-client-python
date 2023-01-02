@@ -1,11 +1,13 @@
+import json
 import urllib3
 
 from base64 import b64encode
 from jsonschema.exceptions import ValidationError
+from urllib3.exceptions import LocationValueError, ConnectTimeoutError, TimeoutError, MaxRetryError
 
-from moengage.inform.client.api.exception_handler import InformClientException
 from moengage.inform.client.utils.api_description import InformClientRoutes
 from moengage.inform.client.api.request.request_validator import validate_request
+from moengage.inform.client.api.response.inform_response import InformClientResponse
 
 
 class InformClient(object):
@@ -34,28 +36,30 @@ class InformClient(object):
         Returns:
             InformSentResponse: response of the Inform API
         """
-        import json
         try:
             validate_request(request_body)
         except ValidationError as err:
-            # 422 Unprocessable Entity
             return err
+
         url = "%s/%s" % (self.base_url, InformClientRoutes.INFORM_SEND)
 
-        http = urllib3.PoolManager()
-        encoded_body = json.dumps(request_body).encode('utf-8')
         try:
+            http = urllib3.PoolManager()
+            encoded_body = json.dumps(request_body).encode('utf-8')
             resp = http.request("POST", url, body=encoded_body, headers=self.headers, timeout=10)
-        except Exception as e:
-            print(e)
+            response = json.loads(resp.data.decode("utf-8"))
+        except LocationValueError:
+            return "Please Provide correct base_url"
+        except (ConnectTimeoutError, TimeoutError):
+            try:
+                http = urllib3.PoolManager()
+                encoded_body = json.dumps(request_body).encode('utf-8')
+                resp = http.request("POST", url, body=encoded_body, headers=self.headers, timeout=10, retries=3)
+                response = json.loads(resp.data.decode("utf-8"))
+            except (ConnectTimeoutError, TimeoutError, MaxRetryError):
+                return 'Connection failed to the provided server even after multiple retries'
 
-        if resp.status >= 400:
-            return resp.data, resp.status
+        if resp.status == 200:
+            return InformClientResponse(response).get_success_response()
 
-        import json
-
-        data = {}
-        data['key'] = 'value'
-        #json_data = json.dumps(data)
-
-        return json.loads(resp.data.decode('utf-8'))
+        return InformClientResponse(response).get_error_response(resp.status)
