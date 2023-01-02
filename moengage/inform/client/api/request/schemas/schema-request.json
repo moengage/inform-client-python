@@ -1,0 +1,11 @@
+{
+    "$id": "https://example.com/schemas/request",
+    "type": "object",
+    "properties": {
+        "alert_id": {"type": "string"},
+        "user_id": {"type": "string", "minLength": 0},
+        "transaction_id": {"type": "string", "minLength": 1, "maxLength": 50},
+        "payloads": {"$ref": "/schemas/payloads"}
+    },
+    "required": ["alert_id", "user_id", "transaction_id", "payloads"]
+}
