@@ -26,7 +26,7 @@ python3.X is required.
 
 ```python
 from moengage.inform.client.core.inform_client import InformClient
-c = InformClient(base_url, app_id, api_secret)
+client = InformClient(base_url, app_id, api_secret)
 payload = {"alert_id": "alert_id","user_id": "user_id","transaction_id": "transaction_id","payloads": {"SMS": {"recipient":"samplemobileno","personalized_attributes": {"attr": "value"}}}}
 response = client.send(payload)
 print(response)
