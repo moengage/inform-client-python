@@ -29,11 +29,11 @@ class InformClient(object):
 
     def send_alert(self, request_body):
         """
-        Post an inform request to Inform environments
+        Send alert to provided recipients
         Args:
             request_body:
         Returns:
-            InformSentResponse: response of the Inform API
+            response: response of the Inform API
         """
         try:
             validate_request(request_body)

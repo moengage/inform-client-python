@@ -4,8 +4,8 @@ This Python Package helps you send notifications through [MoEngage Inform](https
 
 APIs supported:
 
-- Inform Test API
-- Inform Send API
+- Inform Test API - Sandbox API
+- Inform Send API - Live API
 
 ## Official Inform API docs
 
@@ -37,11 +37,11 @@ print(response)
 
 For a full description of request and response payloads and properties, please see the [official Inform API docs](https://help.moengage.com/hc/en-us/articles/10672957787284-Overview-Inform).
 
-### Inform Test API
+### Inform Test API - Sandbox API
 
 - `send_alert(requestbody) (response)` [[Postman API Description]](https://www.postman.com/moengage-dev/workspace/api-docs/request/3182294-dce6282f-4e49-4f69-9dd4-1d531c286744)
 
-### Inform Send API
+### Inform Send API - Live API
 
 - `send_alert(requestbody) (response)` [[Postman API Description]](https://www.postman.com/moengage-dev/workspace/api-docs/request/3182294-47c54026-a3fd-4c7a-9480-504665f03228)
 
