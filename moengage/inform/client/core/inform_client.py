@@ -48,6 +48,6 @@ class InformClient(object):
             resp = http.request("POST", url, body=encoded_body, headers=self.headers, timeout=10, retries=3)
             response = json.loads(resp.data.decode("utf-8"))
         except HTTPError:
-            raise HTTPError("Connection failed to " + self.base_url + " due to even after multiple retries")
+            raise HTTPError("Connection failed to " + self.base_url + " even after multiple retries")
 
         return response
