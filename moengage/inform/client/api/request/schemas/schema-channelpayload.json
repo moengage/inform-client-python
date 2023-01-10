@@ -1,0 +1,9 @@
+{
+    "$id": "/schemas/channelpayload",
+    "type": "object",
+    "properties": {
+        "recipient": {"type": "string", "minLength": 1, "maxLength": 100},
+        "personalized_attributes": {"type": "object"}
+    },
+    "required": ["recipient"]
+}

@@ -1,0 +1,16 @@
+{
+    "$id": "/schemas/payloads",
+    "type": "object",
+    "propertyNames": {
+      "enum": [
+        "EMAIL",
+        "SMS"
+      ]
+    },
+    "patternProperties": {
+      "": {
+        "$ref": "/schemas/channelpayload"
+      }
+    },
+    "minProperties": 1
+}
