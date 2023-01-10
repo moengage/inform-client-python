@@ -1,5 +1,5 @@
 {
-    "$id": "https://example.com/schemas/payloads",
+    "$id": "/schemas/payloads",
     "type": "object",
     "propertyNames": {
       "enum": [
