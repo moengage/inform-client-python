@@ -1,6 +1,6 @@
 # `inform-client-python`
 
-This Python Package helps you send notifications through [MoEngage Inform](https://www.moengage.com/blog/introducing-transactional-alerts-moengage-inform/), the smartest way to design &amp; deliver notifications. Deliver your transactional messages to any channel through one API. Currently Email and SMS channels are supported.
+This Python Package helps you in sending notifications through [MoEngage Inform](https://www.moengage.com/blog/introducing-transactional-alerts-moengage-inform/), the smartest way to design &amp; deliver notifications. Deliver your transactional messages to any channel through one API. Currently Email and SMS channels are supported.
 
 APIs supported:
 
@@ -17,7 +17,7 @@ Install from PyPI using pip:
 ```
 $ pip install inform-client-python
 ```
-python3.X is required.
+python3.9 is required.
 
 ## Usage
 
