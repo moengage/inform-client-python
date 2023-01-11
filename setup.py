@@ -13,7 +13,7 @@ setup(
     long_description_content_type="text/markdown",
     url='https://github.com/moengage/inform-client-python',
     project_urls={
-            "Bug Tracker": "Package issues URL",
+            "Bug Tracker": "https://github.com/moengage/inform-client-python/issues",
     },
     license='BSD 2-clause',
     install_requires=['StrEnum~=0.4.9',
