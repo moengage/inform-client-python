@@ -10,7 +10,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/moenga
 - Run `make install`
 - Run `source env/bin/activate`
 - Write code!
-- Test your code!
+- Test your code using `make test`
 - When finished, run `deactivate` to stop using this environment.
 
 ## Releasing New Versions
@@ -23,8 +23,8 @@ To put informclient on PyPI
 - Create and push a new version tag
 
   ```bash
-  git tag <VERSION>
-  git push origin <VERSION>
+  git tag v<VERSION> -m v<VERSION>
+  git push origin v<VERSION>
   ```
 
 - Wait for GitHub Action to test and deploy

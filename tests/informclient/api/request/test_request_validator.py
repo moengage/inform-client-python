@@ -1,6 +1,6 @@
 import pytest
 
-from api.request.request_validator import validate_request
+from informclient.api.request.request_validator import validate_request
 from jsonschema.exceptions import ValidationError
 
 

@@ -10,8 +10,8 @@ with open('LICENSE', 'r') as fh:
 
 setup(
     name='informclient',
-    version='0.0.1',
-    author='mohammadtariqueanjum',
+    version='0.0.11rc7',
+    author='MoEngage',
     author_email='support@moengage.com',
     description='This Python Package helps you in sending notifications through MoEngage Inform',
     long_description=long_description,
@@ -32,6 +32,8 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
     ],
-    py_modules=['informclient', 'utils.api_description', 'api.request.request_validator'],
+    py_modules=['informclient.informclient',
+                'informclient.utils.api_description',
+                'informclient.api.request.request_validator'],
     python_requires='>=3.9'
 )

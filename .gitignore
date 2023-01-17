@@ -11,4 +11,4 @@ dist/
 .idea/
 
 #Virtual-env
-py3-venv/
+env/
