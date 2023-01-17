@@ -1,17 +1,25 @@
 all: clean venv install
 
 venv:
-				virtualenv py3-venv
+				virtualenv env
 
 install: venv
-				. py3-venv/bin/activate; pip install -r requirements.txt
-				. py3-venv/bin/activate; pip install -e .
+				. env/bin/activate; pip install -r dev-requirements.txt
+				. env/bin/activate; pip install -e .
+
+analysis:
+				. env/bin/activate; flake8 informclient
+
+test: analysis
+				. env/bin/activate; py.test --cov-report term-missing --cov-report html --cov informclient tests/*
 
 build: install
-				. py3-venv/bin/activate; python setup.py sdist
-				. py3-venv/bin/activate; python setup.py bdist_wheel
+				. env/bin/activate; python setup.py sdist
+				. env/bin/activate; python setup.py bdist_wheel
 
 release: build; twine upload -r pypi dist/*
 
+release-test: build; twine upload -r test dist/*
+
 clean:
-				rm -rf py3-venv build dist *.egg-info
+				rm -rf env build dist *.egg-info

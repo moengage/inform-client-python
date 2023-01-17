@@ -3,8 +3,8 @@ import urllib3
 
 from base64 import b64encode
 
-from utils.api_description import InformClientRoutes
-from api.request.request_validator import validate_request
+from informclient.utils.api_description import InformClientRoutes
+from informclient.api.request.request_validator import validate_request
 
 
 class InformClient(object):
