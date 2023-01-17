@@ -1,3 +1,14 @@
-.idea/
-py3-venv/
+# Byte-compiled / optimized / DLL files
 __pycache__/
+*.pyc
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info
+
+#PyCharm files
+.idea/
+
+#Virtual-env
+py3-venv/
