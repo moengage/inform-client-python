@@ -3,8 +3,8 @@ import urllib3
 
 from base64 import b64encode
 
-from moengage.inform.client.utils.api_description import InformClientRoutes
-from moengage.inform.client.api.request.request_validator import validate_request
+from utils.api_description import InformClientRoutes
+from api.request.request_validator import validate_request
 
 
 class InformClient(object):
@@ -17,6 +17,8 @@ class InformClient(object):
           app_id (str):
           api_secret (str):
         """
+        if base_url == '' or app_id == '' or api_secret == '':
+            raise ValueError("Any of the 3 required arguments: 'base_url', 'app_id', and 'api_secret' cannot be empty")
         self.base_url = base_url
         credentials = b64encode('{}:{}'.format(app_id, api_secret).encode())
         self.headers = {
