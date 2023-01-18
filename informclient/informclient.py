@@ -18,7 +18,7 @@ class InformClient(object):
           api_secret (str):
         """
         if base_url == '' or app_id == '' or api_secret == '':
-            raise ValueError("Any of the 3 required arguments: 'base_url', 'app_id', and 'api_secret' cannot be empty")
+            raise ValueError("base_url or app_id or api_secret is empty")
         self.base_url = base_url
         credentials = b64encode('{}:{}'.format(app_id, api_secret).encode())
         self.headers = {
@@ -42,7 +42,8 @@ class InformClient(object):
 
         http = urllib3.PoolManager()
         encoded_body = json.dumps(request_body).encode('utf-8')
-        resp = http.request("POST", url, body=encoded_body, headers=self.headers, timeout=10, retries=3)
+        resp = http.request("POST", url, body=encoded_body,
+                            headers=self.headers, timeout=10, retries=3)
         response = json.loads(resp.data.decode("utf-8"))
 
         return response

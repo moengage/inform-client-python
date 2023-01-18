@@ -76,4 +76,3 @@ def test_valid_request():
             }
     }
     validate_request(payload)
-
