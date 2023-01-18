@@ -12,7 +12,7 @@ setup(
     name='informclient',
     version='0.0.11rc7',
     author='MoEngage',
-    author_email='support@moengage.com',
+    author_email='inform@moengage.com',
     description='This Python Package helps you in sending notifications through MoEngage Inform',
     long_description=long_description,
     long_description_content_type='text/markdown',
