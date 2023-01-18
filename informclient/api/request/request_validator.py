@@ -32,9 +32,18 @@ def validate_request(request_body):
         "$id": "/schemas/request",
         "type": "object",
         "properties": {
-            "alert_id": {"type": "string", "minLength": 24, "maxLength": 24, "pattern": "^[A-Fa-f0-9]{24}$"},
+            "alert_id": {
+                "type": "string",
+                "minLength": 24,
+                "maxLength": 24,
+                "pattern": "^[A-Fa-f0-9]{24}$"
+            },
             "user_id": {"type": "string"},
-            "transaction_id": {"type": "string", "minLength": 1, "maxLength": 50},
+            "transaction_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 50
+            },
             "payloads": {"$ref": "/schemas/payloads"}
         },
         "required": ["alert_id", "transaction_id", "payloads"]

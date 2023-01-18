@@ -33,7 +33,7 @@ python3.9 or later is required.
 ```
 Note: Install these individually if any issue raises in installation of these requirements like this 
 ```shell
-$ pip install StrEnum~=0.4.9`
+$ pip install StrEnum~=0.4.9
 ```
 
 ## Usage

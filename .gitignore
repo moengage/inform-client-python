@@ -7,6 +7,12 @@ build/
 dist/
 *.egg-info
 
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.pytest_cache/
+htmlcov/
+
 #PyCharm files
 .idea/
 
