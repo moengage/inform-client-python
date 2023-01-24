@@ -44,6 +44,6 @@ class InformClient(object):
         encoded_body = json.dumps(request_body).encode('utf-8')
         resp = http.request("POST", url, body=encoded_body,
                             headers=self.headers, timeout=10, retries=3)
-        response = json.loads(resp.data.decode("utf-8"))
-
-        return response
+        response_data = json.loads(resp.data.decode("utf-8"))
+        response_data.update({"status_code": resp.status})
+        return response_data
