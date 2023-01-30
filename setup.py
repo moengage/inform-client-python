@@ -10,7 +10,7 @@ with open('LICENSE', 'r') as fh:
 
 setup(
     name='informclient',
-    version='0.0.11rc8',
+    version='0.0.1',
     author='MoEngage',
     author_email='inform@moengage.com',
     description='This Python Package helps you in sending notifications through MoEngage Inform',
@@ -26,7 +26,7 @@ setup(
                       ],
     keywords=['MoEngage', 'Inform', 'MoEngage Inform', 'Customer Engagement', 'Transactional Alerts'],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
