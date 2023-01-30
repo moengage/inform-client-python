@@ -1,4 +1,4 @@
-# `informclient`
+# `moe-inform-client`
 
 ## Table of contents
 
@@ -20,7 +20,7 @@ For an official overview of Inform Product, please see the [Inform Overview](htt
 Install from PyPI using [pip](http://www.pip-installer.org/en/latest/):
 
 ```shell
-$ pip install informclient
+$ pip install moe-inform-client
 ```
 
 python3.9 or later is required.

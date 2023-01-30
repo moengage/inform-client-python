@@ -9,7 +9,7 @@ with open('LICENSE', 'r') as fh:
 
 
 setup(
-    name='informclient',
+    name='moe-inform-client',
     version='0.0.1',
     author='MoEngage',
     author_email='inform@moengage.com',
