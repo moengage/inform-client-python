@@ -28,7 +28,7 @@ python3.9 or later is required.
 ## Requirements
 ```text
   StrEnum~=0.4.9
-  urllib3~=1.26.13
+  urllib3~=1.26.5
   jsonschema~=4.17.3
 ```
 Note: Install these individually if any issue raises in installation of these requirements like this 
