@@ -10,7 +10,7 @@ with open('LICENSE', 'r') as fh:
 
 setup(
     name='moe-inform-client',
-    version='0.0.1',
+    version='0.0.2',
     author='MoEngage',
     author_email='inform@moengage.com',
     description='This Python Package helps you in sending notifications through MoEngage Inform',
@@ -21,7 +21,7 @@ setup(
             'Bug Tracker': 'https://github.com/moengage/inform-client-python/issues',
     },
     install_requires=['StrEnum~=0.4.9',
-                      'urllib3~=1.26.13',
+                      'urllib3~=1.26.5',
                       'jsonschema~=4.17.3'
                       ],
     keywords=['MoEngage', 'Inform', 'MoEngage Inform', 'Customer Engagement', 'Transactional Alerts'],
